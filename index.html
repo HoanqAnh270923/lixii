@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Chúc mừng năm mới</h1>
+    <h2>Bạn sẽ lì xì mình chứ??</h2>
+    <img id="img1" src="vecteezy_2024-dragon-happy-new-year-vector_28545033.jpg" style="border-radius: 10px;" height="400px" width="500px">
+    <img id="img2" src="qr.png" style="opacity: 0; position: absolute; top: 50%; left: 100px;">
+    <div class="button-container">
+        <button class="button-1" id="button1" role="button">Oke</button>
+        <button class="button-2" id="button2" role="button">Không</button>
+    </div>
+
+    <script>
+        document.getElementById("button2").addEventListener("mouseover", function() {
+            // Thực hiện hành động khi di chuột vào button 2
+            this.style.position = "absolute";
+            var randomX = Math.random() * (window.innerWidth - this.offsetWidth);
+            var randomY = Math.random() * (window.innerHeight - this.offsetHeight);
+            this.style.left = randomX + "px";
+            this.style.top = randomY + "px";
+        });
+
+
+        document.getElementById("button2").addEventListener("click", function() {
+            // Thực hiện hành động khi di chuột vào button 2
+            this.style.position = "absolute";
+            var randomX = Math.random() * (window.innerWidth - this.offsetWidth);
+            var randomY = Math.random() * (window.innerHeight - this.offsetHeight);
+            this.style.left = randomX + "px";
+            this.style.top = randomY + "px";
+        });
+
+        document.getElementById("button1").addEventListener("click", function() {
+            var img2 = document.getElementById("img2");
+            setTimeout(function() {
+                var startX = window.innerWidth;
+                var endX = (window.innerWidth - img2.offsetWidth) / 2;
+                var posY = (window.innerHeight - img2.offsetHeight) / 2;
+
+                var step = 5;
+                var delay = 8;
+                var currentX = startX;
+
+                var moveInterval = setInterval(function() {
+                    if (currentX > endX) {
+                        img2.style.left = currentX + "px";
+                        img2.style.top = posY + "px";
+                        currentX -= step;
+                    } else {
+                        clearInterval(moveInterval);
+                    }
+                }, delay);
+                setTimeout(function() {
+                    img2.style.opacity = "1";
+                }, 100);
+            },);
+        });
+    </script>
+</body>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+    
+    h1{
+        text-align: center;
+    }
+
+    h2{
+        text-align: center;
+    }
+    #img1{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #img2{
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 1;
+    }
+
+    .button-container {
+        text-align: center;
+        margin-top: 20px; /* optional: adjust margin as needed */
+    }
+
+    .button-1, .button-2 {
+        margin: 0 10px; /* optional: adjust margin between buttons as needed */
+        z-index: 0;
+    }
+
+    .button-1, .button-2 {
+        background-color: #EA4C89;
+        border-radius: 8px;
+        border-style: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        height: 40px;
+        line-height: 20px;
+        list-style: none;
+        outline: none;
+        padding: 10px 16px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: color 100ms;
+        vertical-align: baseline;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        transition: left 0.5s ease, top 0.5s ease, opacity 1s ease; /*Thêm transition cho opacity*/
+    }
+
+    .button-1:hover,
+    .button-1:focus {
+        background-color: #F082AC;
+    }
+
+    .button-2 {
+        background-color: red;
+    }
+
+    .button-2:hover,
+    .button-2:focus {
+        background-color: #f34747;
+    }
+
+</style>
+</html>

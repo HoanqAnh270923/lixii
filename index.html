@@ -1,143 +1,1262 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Yumi - Ứng dụng gợi ý món ăn thông minh</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .gap-2 {
+            gap: 0.5rem;
+        }
+
+        .gap-3 {
+            gap: 0.75rem;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .mt-1 {
+            margin-top: 0.25rem;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+
+        .mt-3 {
+            margin-top: 0.75rem;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .mb-3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mr-2 {
+            margin-right: 0.5rem;
+        }
+
+        .p-2 {
+            padding: 0.5rem;
+        }
+
+        .p-3 {
+            padding: 0.75rem;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+
+        .p-6 {
+            padding: 1.5rem;
+        }
+
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .py-3 {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+        }
+
+        .font-medium {
+            font-weight: 500;
+        }
+
+        .font-semibold {
+            font-weight: 600;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .text-white {
+            color: #fff;
+        }
+
+        .text-gray-500 {
+            color: #6b7280;
+        }
+
+        .text-gray-600 {
+            color: #4b5563;
+        }
+
+        .text-gray-700 {
+            color: #374151;
+        }
+
+        /* Changed from emerald to orange */
+        .text-orange-600 {
+            color: #e88400;
+        }
+
+        .bg-white {
+            background-color: #fff;
+        }
+
+        /* Changed from emerald to orange */
+        .bg-orange-50 {
+            background-color: #fff7ed;
+        }
+
+        .bg-orange-500 {
+            background-color: #e88400;
+        }
+
+        .bg-orange-600 {
+            background-color: #d97706;
+        }
+
+        .bg-blue-600 {
+            background-color: #2563eb;
+        }
+
+        .bg-amber-500 {
+            background-color: #f59e0b;
+        }
+
+        .bg-red-50 {
+            background-color: #fef2f2;
+        }
+
+        .border {
+            border: 1px solid #e5e7eb;
+        }
+
+        .border-t {
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .border-b {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .border-gray-100 {
+            border-color: #f3f4f6;
+        }
+
+        .border-gray-200 {
+            border-color: #e5e7eb;
+        }
+
+        /* Changed from emerald to orange */
+        .border-orange-500 {
+            border-color: #e88400;
+        }
+
+        .rounded-md {
+            border-radius: 0.375rem;
+        }
+
+        .rounded-lg {
+            border-radius: 0.5rem;
+        }
+
+        .rounded-xl {
+            border-radius: 0.75rem;
+        }
+
+        .rounded-full {
+            border-radius: 9999px;
+        }
+
+        .shadow-sm {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        .overflow-x-auto {
+            overflow-x: auto;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .grid-cols-4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .h-full {
+            height: 100%;
+        }
+
+        .h-12 {
+            height: 3rem;
+        }
+
+        .h-16 {
+            height: 4rem;
+        }
+
+        .h-32 {
+            height: 8rem;
+        }
+
+        .h-40 {
+            height: 10rem;
+        }
+
+        .h-48 {
+            height: 12rem;
+        }
+
+        .min-h-screen {
+            min-height: 100vh;
+        }
+
+        .flex-1 {
+            flex: 1 1 0%;
+        }
+
+        .flex-shrink-0 {
+            flex-shrink: 0;
+        }
+
+        .object-cover {
+            object-fit: cover;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .absolute {
+            position: absolute;
+        }
+
+        .sticky {
+            position: sticky;
+        }
+
+        .top-0 {
+            top: 0;
+        }
+
+        .bottom-0 {
+            bottom: 0;
+        }
+
+        .left-0 {
+            left: 0;
+        }
+
+        .right-0 {
+            right: 0;
+        }
+
+        .inset-0 {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .z-10 {
+            z-index: 10;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .block {
+            display: block;
+        }
+
+        .line-through {
+            text-decoration: line-through;
+        }
+
+        .space-y-3 > * + * {
+            margin-top: 0.75rem;
+        }
+
+        .space-y-4 > * + * {
+            margin-top: 1rem;
+        }
+
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        /* Components */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.375rem;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #e88400;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #d97706;
+        }
+
+        .btn-secondary {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-outline:hover {
+            background-color: #f9fafb;
+        }
+
+        .btn-icon {
+            padding: 0.5rem;
+            border-radius: 9999px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 9999px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        .badge-primary {
+            background-color: #fff7ed;
+            color: #e88400;
+        }
+
+        .badge-secondary {
+            background-color: #eff6ff;
+            color: #2563eb;
+        }
+
+        .badge-warning {
+            background-color: #fffbeb;
+            color: #d97706;
+        }
+
+        .badge-danger {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
+
+        .tab-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .tab-list {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .tab {
+            padding: 0.75rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .tab.active {
+            color: #e88400;
+            border-bottom-color: #e88400;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .icon-sm {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .icon-lg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        /* Footer Navigation */
+        .footer-nav {
+            background-color: white;
+            border-top: 1px solid #e5e7eb;
+            box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.05);
+            position: sticky;
+            bottom: 0;
+            z-index: 10;
+        }
+
+        /* Eat Out Button Hover Effect */
+        .eat-out-container {
+    position: relative;
+}
+
+.eat-out-buttons {
+    position: absolute;
+    top: -90px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    z-index: 20;
+    border: 1px solid rgba(232, 132, 0, 0.1);
+}
+
+.eat-out-container:hover .eat-out-buttons {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.eat-out-button {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background-color: #fff7ed;
+    transition: all 0.2s ease;
+    color: #e88400;
+    font-weight: 500;
+    border: 1px solid rgba(232, 132, 0, 0.2);
+}
+
+.eat-out-button:hover {
+    background-color: #e88400;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(232, 132, 0, 0.2);
+}
+
+.eat-out-button svg {
+    margin-right: 10px;
+    transition: all 0.2s ease;
+}
+
+.eat-out-button:hover svg {
+    fill: white;
+}
+
+/* Add a small arrow at the bottom of the dropdown */
+.eat-out-buttons:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid white;
+}
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .md\:grid-cols-3 {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .md\:grid-cols-4 {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+
+            .md\:grid-cols-7 {
+                grid-template-columns: repeat(7, minmax(0, 1fr));
+            }
+
+            .md\:hidden {
+                display: none;
+            }
+
+            .md\:block {
+                display: block;
+            }
+
+            .md\:inline {
+                display: inline;
+            }
+
+            .md\:mr-0 {
+                margin-right: 0;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-3 {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .lg\:grid-cols-4 {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+
+        /* Animations */
+        .slide-in-from-top {
+            animation: slideInFromTop 0.3s ease-out;
+        }
+
+        @keyframes slideInFromTop {
+            0% {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Hide scrollbar */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Custom styles */
+        .meal-card-overlay {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        }
+
+        .day-selector {
+            flex-shrink: 0;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+        }
+
+        .day-selector.active {
+            background-color: #fff7ed;
+            border-color: #e88400;
+        }
+
+        .meal-time {
+            border-left: 2px solid #e88400;
+            padding-left: 0.5rem;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.75rem;
+            accent-color: #e88400;
+        }
+    </style>
 </head>
 <body>
-    <h1>Chúc mừng năm mới</h1>
-    <h2>Bạn sẽ lì xì mình chứ??</h2>
-    <img id="img1" src="vecteezy_2024-dragon-happy-new-year-vector_28545033.jpg" style="border-radius: 10px;" height="400px" width="500px">
-    <img id="img2" src="qr.png" style="opacity: 0; position: absolute; top: 50%; left: 100px;">
-    <div class="button-container">
-        <button class="button-1" id="button1" role="button">Oke</button>
-        <button class="button-2" id="button2" role="button">Không</button>
+    <div class="min-h-screen flex flex-col bg-gray-50">
+        <!-- Header -->
+        <header>
+            <div class="container flex items-center justify-between p-4">
+                <div class="flex items-center gap-2">
+                    <svg class="icon-lg text-gray-600 md:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    <h1 class="text-xl font-bold text-orange-600">Yumi</h1>
+                    <img src="yumi.png" alt="" width="40" class="hidden md:block">
+                </div>
+                <div class="flex items-center gap-3">
+                    <button class="btn btn-icon" id="settingsBtn">
+                        <svg class="icon text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </button>
+                    <button class="btn btn-icon" id="userBtn">
+                        <svg class="icon text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- User Preferences Panel (Hidden by default) -->
+        <div id="preferencesPanel" class="container p-4 bg-white border-b border-gray-200 shadow-md slide-in-from-top hidden">
+            <h2 class="mb-3 text-lg font-semibold">Tùy chỉnh cá nhân</h2>
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+                <div class="p-3 border rounded-lg border-gray-200">
+                    <h3 class="text-sm font-medium text-gray-700">Sở thích</h3>
+                    <div class="flex flex-wrap gap-1 mt-2">
+                        <span class="badge badge-primary">Đồ Á</span>
+                        <span class="badge badge-primary">Hải sản</span>
+                        <span class="badge badge-primary">Cay</span>
+                    </div>
+                </div>
+                <div class="p-3 border rounded-lg border-gray-200">
+                    <h3 class="text-sm font-medium text-gray-700">Dị ứng</h3>
+                    <div class="flex flex-wrap gap-1 mt-2">
+                        <span class="badge badge-danger">Hải sản</span>
+                        <span class="badge badge-danger">Đậu phộng</span>
+                    </div>
+                </div>
+                <div class="p-3 border rounded-lg border-gray-200">
+                    <h3 class="text-sm font-medium text-gray-700">Mục tiêu</h3>
+                    <div class="flex flex-wrap gap-1 mt-2">
+                        <span class="badge badge-secondary">Giảm cân</span>
+                        <span class="badge badge-secondary">Ít carb</span>
+                    </div>
+                </div>
+                <div class="p-3 border rounded-lg border-gray-200">
+                    <h3 class="text-sm font-medium text-gray-700">Ngân sách</h3>
+                    <div class="mt-2 text-sm">
+                        <span class="font-medium">50-100k</span> / bữa
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-4">Cập nhật</button>
+        </div>
+
+        <!-- Main Content -->
+        <main class="flex-1 container p-4">
+            <div class="tab-container">
+                <div class="tab-list">
+                    <div class="tab active" data-tab="discover">
+                        <svg class="icon mr-2 md:mr-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        <span class="hidden md:inline">Khám phá</span>
+                    </div>
+                    <div class="tab" data-tab="plan">
+                        <svg class="icon mr-2 md:mr-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <span class="hidden md:inline">Lên kế hoạch</span>
+                    </div>
+                    <div class="tab" data-tab="recipes">
+                        <svg class="icon mr-2 md:mr-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span class="hidden md:inline">Công thức</span>
+                    </div>
+                    <div class="tab" data-tab="shopping">
+                        <svg class="icon mr-2 md:mr-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="hidden md:inline">Mua sắm</span>
+                    </div>
+                </div>
+
+                <!-- Discover Tab -->
+                <div class="tab-content active" id="discover-content">
+                    <div class="space-y-4">
+                        <h2 class="text-xl font-bold">Hôm nay ăn gì?</h2>
+
+                        <div class="card overflow-hidden border-none shadow-md">
+                            <div class="relative">
+                                <img src="https://dulichviet.com.vn/images/bandidau/am-thuc/bun-cha-ha-noi-cha-vien-du-lich-viet.jpg" alt="Món ăn gợi ý" class="object-cover w-full h-48">
+                                <div class="absolute inset-0 meal-card-overlay flex flex-col justify-end p-4 text-white">
+                                    <h3 class="text-xl font-bold">Bún chả Hà Nội</h3>
+                                    <p class="text-sm opacity-90">Món ăn truyền thống, cân bằng dinh dưỡng</p>
+                                    <div class="flex items-center gap-3 mt-2">
+                                        <span class="badge bg-orange-500 text-white">Phù hợp mục tiêu</span>
+                                        <span class="badge bg-amber-500 text-white">Dưới 80k</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex p-4 border-t border-gray-100">
+                                <button class="btn btn-primary flex-1 mr-2">Nấu tại nhà</button>
+                                <div class="eat-out-container flex-1">
+                                    <button class="btn btn-secondary w-full">Ăn ngoài</button>
+                                    <div class="eat-out-buttons">
+                                        <a href="#" style="text-decoration: none;" class="eat-out-button">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#EA4335">
+                                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                            </svg>
+                                            Chỉ đường
+                                        </a>
+                                        <a href="#" style="text-decoration: none;" class="eat-out-button">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#EE4D2D">
+                                                <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm0 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                                            </svg>
+                                            Đặt đồ ăn
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="flex items-center justify-between pt-4 text-lg font-semibold">
+                            <span>Gợi ý khác cho bạn</span>
+                            <svg class="icon text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </h3>
+
+                        <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                            <div class="card overflow-hidden hover:shadow-md">
+                                <img src="https://static.vinwonders.com/production/Com-ga-Hai-Nam-Ha-Noi-3.jpg" alt="Cơm gà Hội An" class="object-cover w-full h-32">
+                                <div class="p-3">
+                                    <h4 class="font-medium">Cơm gà Hội An</h4>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-sm text-gray-500">30-50k</span>
+                                        <span class="badge badge-primary">Phù hợp</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card overflow-hidden hover:shadow-md">
+                                <img src="https://hidafoods.vn/wp-content/uploads/2024/01/nau-pho-bo-nam-dinh-1.jpg" alt="Phở bò" class="object-cover w-full h-32">
+                                <div class="p-3">
+                                    <h4 class="font-medium">Phở bò</h4>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-sm text-gray-500">30-50k</span>
+                                        <span class="badge badge-primary">Phù hợp</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card overflow-hidden hover:shadow-md">
+                                <img src="https://xebanhmithonhiky.com.vn/wp-content/uploads/2020/09/cach-lam-thit-ban-banh-mi-ngon.jpg" alt="Bánh mì thịt" class="object-cover w-full h-32">
+                                <div class="p-3">
+                                    <h4 class="font-medium">Bánh mì thịt</h4>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-sm text-gray-500">30-50k</span>
+                                        <span class="badge badge-primary">Phù hợp</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card overflow-hidden hover:shadow-md">
+                                <img src="https://cdn.tgdd.vn/2021/12/CookDishThumb/cach-lam-bun-dau-mam-tom-ngon-ngat-ngay-an-mot-lan-la-ghien-thumb-620x620.jpg" alt="Bún đậu mắm tôm" class="object-cover w-full h-32">
+                                <div class="p-3">
+                                    <h4 class="font-medium">Bún đậu mắm tôm</h4>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-sm text-gray-500">30-50k</span>
+                                        <span class="badge badge-primary">Phù hợp</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plan Tab -->
+                <div class="tab-content" id="plan-content">
+                    <h2 class="text-xl font-bold mb-4">Kế hoạch ăn uống</h2>
+
+                    <div class="flex overflow-x-auto pb-2 gap-2 hide-scrollbar">
+                        <div class="day-selector">T2</div>
+                        <div class="day-selector active">T3</div>
+                        <div class="day-selector">T4</div>
+                        <div class="day-selector">T5</div>
+                        <div class="day-selector">T6</div>
+                        <div class="day-selector">T7</div>
+                        <div class="day-selector">CN</div>
+                    </div>
+
+                    <div class="space-y-4 mt-4">
+                        <div class="p-4 border rounded-lg border-gray-200">
+                            <h3 class="text-lg font-medium">Bữa sáng</h3>
+                            <div class="flex items-center gap-3 mt-2">
+                                <img src="https://via.placeholder.com/60x60/e88400/FFFFFF?text=Banh+Mi" alt="Bánh mì" class="w-16 h-16 rounded-md object-cover">
+                                <div>
+                                    <h4 class="font-medium">Bánh mì thịt nguội</h4>
+                                    <p class="text-sm text-gray-500">Cân bằng, giàu protein</p>
+                                    <span class="badge badge-primary mt-1">30k</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 border rounded-lg border-gray-200">
+                            <h3 class="text-lg font-medium">Bữa trưa</h3>
+                            <div class="flex items-center gap-3 mt-2">
+                                <img src="https://via.placeholder.com/60x60/e88400/FFFFFF?text=Com+Ga" alt="Cơm" class="w-16 h-16 rounded-md object-cover">
+                                <div>
+                                    <h4 class="font-medium">Cơm gà Hội An</h4>
+                                    <p class="text-sm text-gray-500">Đầy đủ dinh dưỡng</p>
+                                    <span class="badge badge-primary mt-1">60k</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 border rounded-lg border-gray-200">
+                            <h3 class="text-lg font-medium">Bữa tối</h3>
+                            <div class="flex items-center gap-3 mt-2">
+                                <img src="https://via.placeholder.com/60x60/e88400/FFFFFF?text=Bun+Cha" alt="Bún" class="w-16 h-16 rounded-md object-cover">
+                                <div>
+                                    <h4 class="font-medium">Bún chả Hà Nội</h4>
+                                    <p class="text-sm text-gray-500">Ít calo, phù hợp buổi tối</p>
+                                    <span class="badge badge-primary mt-1">70k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary w-full mt-4">Tạo kế hoạch tuần mới</button>
+                </div>
+
+                <!-- Recipes Tab -->
+                <div class="tab-content" id="recipes-content">
+                    <h2 class="text-xl font-bold mb-4">Công thức nấu ăn</h2>
+
+                    <div class="relative mb-4">
+                        <input type="text" placeholder="Tìm công thức..." class="w-full p-3 pl-10 border rounded-lg border-gray-200">
+                        <svg class="absolute w-5 h-5 text-gray-400 left-3 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <div class="card overflow-hidden hover:shadow-md">
+                            <img src="https://via.placeholder.com/300x150/e88400/FFFFFF?text=Bun+Cha" alt="Bún chả Hà Nội" class="object-cover w-full h-40">
+                            <div class="p-4">
+                                <h4 class="font-medium">Bún chả Hà Nội</h4>
+                                <div class="flex items-center gap-3 mt-2 text-sm text-gray-500">
+                                    <div class="flex items-center">
+                                        <svg class="icon-sm mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>
+                                        45 phút
+                                    </div>
+                                    <div>
+                                        <span class="badge badge-primary">Trung bình</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary w-full mt-3">Xem công thức</button>
+                            </div>
+                        </div>
+
+                        <div class="card overflow-hidden hover:shadow-md">
+                            <img src="https://via.placeholder.com/300x150/e88400/FFFFFF?text=Com+Ga" alt="Cơm gà Hội An" class="object-cover w-full h-40">
+                            <div class="p-4">
+                                <h4 class="font-medium">Cơm gà Hội An</h4>
+                                <div class="flex items-center gap-3 mt-2 text-sm text-gray-500">
+                                    <div class="flex items-center">
+                                        <svg class="icon-sm mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>
+                                        30 phút
+                                    </div>
+                                    <div>
+                                        <span class="badge badge-primary">Dễ</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary w-full mt-3">Xem công thức</button>
+                            </div>
+                        </div>
+
+                        <div class="card overflow-hidden hover:shadow-md">
+                            <img src="https://via.placeholder.com/300x150/e88400/FFFFFF?text=Pho+Bo" alt="Phở bò" class="object-cover w-full h-40">
+                            <div class="p-4">
+                                <h4 class="font-medium">Phở bò</h4>
+                                <div class="flex items-center gap-3 mt-2 text-sm text-gray-500">
+                                    <div class="flex items-center">
+                                        <svg class="icon-sm mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>
+                                        120 phút
+                                    </div>
+                                    <div>
+                                        <span class="badge badge-primary">Khó</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary w-full mt-3">Xem công thức</button>
+                            </div>
+                        </div>
+
+                        <div class="card overflow-hidden hover:shadow-md">
+                            <img src="https://via.placeholder.com/300x150/e88400/FFFFFF?text=Banh+Mi" alt="Bánh mì thịt" class="object-cover w-full h-40">
+                            <div class="p-4">
+                                <h4 class="font-medium">Bánh mì thịt</h4>
+                                <div class="flex items-center gap-3 mt-2 text-sm text-gray-500">
+                                    <div class="flex items-center">
+                                        <svg class="icon-sm mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>
+                                        20 phút
+                                    </div>
+                                    <div>
+                                        <span class="badge badge-primary">Dễ</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary w-full mt-3">Xem công thức</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shopping Tab -->
+                <div class="tab-content" id="shopping-content">
+                    <h2 class="text-xl font-bold mb-4">Danh sách mua sắm</h2>
+
+                    <div class="card mb-4">
+                        <div class="card-content">
+                            <h3 class="text-lg font-medium">Nguyên liệu cho tuần này</h3>
+                            <div class="mt-4 space-y-3">
+                                <div class="flex items-center justify-between pb-2 border-b border-gray-100">
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" class="checkbox" id="item1">
+                                        <label for="item1">Thịt gà</label>
+                                    </div>
+                                    <span class="text-sm text-gray-500">1kg</span>
+                                </div>
+                                <div class="flex items-center justify-between pb-2 border-b border-gray-100">
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" class="checkbox" id="item2" checked>
+                                        <label for="item2" class="line-through text-gray-400">Rau xà lách</label>
+                                    </div>
+                                    <span class="text-sm text-gray-500">500g</span>
+                                </div>
+                                <div class="flex items-center justify-between pb-2 border-b border-gray-100">
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" class="checkbox" id="item3">
+                                        <label for="item3">Cà chua</label>
+                                    </div>
+                                    <span class="text-sm text-gray-500">300g</span>
+                                </div>
+                                <div class="flex items-center justify-between pb-2 border-b border-gray-100">
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" class="checkbox" id="item4">
+                                        <label for="item4">Hành tây</label>
+                                    </div>
+                                    <span class="text-sm text-gray-500">2 củ</span>
+                                </div>
+                                <div class="flex items-center justify-between pb-2 border-b border-gray-100">
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" class="checkbox" id="item5" checked>
+                                        <label for="item5" class="line-through text-gray-400">Nước mắm</label>
+                                    </div>
+                                    <span class="text-sm text-gray-500">1 chai</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button class="btn btn-primary flex-1">
+                            <svg class="icon-sm mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            Tìm siêu thị gần nhất
+                        </button>
+                        <button class="btn btn-outline flex-1">
+                            <svg class="icon-sm mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
+                            Đặt hàng online
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Navigation -->
+        <footer class="footer-nav md:hidden">
+            <div class="grid grid-cols-4 p-2">
+                <button class="flex flex-col items-center justify-center p-2 text-orange-600" data-tab="discover">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span class="mt-1 text-xs">Khám phá</span>
+                </button>
+                <button class="flex flex-col items-center justify-center p-2 text-gray-500" data-tab="plan">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span class="mt-1 text-xs">Kế hoạch</span>
+                </button>
+                <button class="flex flex-col items-center justify-center p-2 text-gray-500" data-tab="recipes">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span class="mt-1 text-xs">Công thức</span>
+                </button>
+                <button class="flex flex-col items-center justify-center p-2 text-gray-500" data-tab="shopping">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="mt-1 text-xs">Mua sắm</span>
+                </button>
+            </div>
+        </footer>
     </div>
 
     <script>
-        document.getElementById("button2").addEventListener("mouseover", function() {
-            // Thực hiện hành động khi di chuột vào button 2
-            this.style.position = "absolute";
-            var randomX = Math.random() * (window.innerWidth - this.offsetWidth);
-            var randomY = Math.random() * (window.innerHeight - this.offsetHeight);
-            this.style.left = randomX + "px";
-            this.style.top = randomY + "px";
+        // Toggle user preferences panel
+        document.getElementById('userBtn').addEventListener('click', function() {
+            const panel = document.getElementById('preferencesPanel');
+            panel.classList.toggle('hidden');
         });
 
+        // Tab switching functionality
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const footerButtons = document.querySelectorAll('.footer-nav button');
 
-        document.getElementById("button2").addEventListener("click", function() {
-            // Thực hiện hành động khi di chuột vào button 2
-            this.style.position = "absolute";
-            var randomX = Math.random() * (window.innerWidth - this.offsetWidth);
-            var randomY = Math.random() * (window.innerHeight - this.offsetHeight);
-            this.style.left = randomX + "px";
-            this.style.top = randomY + "px";
+        function switchTab(tabId) {
+            // Update tab buttons
+            tabs.forEach(tab => {
+                if (tab.dataset.tab === tabId) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            // Update footer buttons
+            footerButtons.forEach(button => {
+                if (button.dataset.tab === tabId) {
+                    button.classList.add('text-orange-600');
+                    button.classList.remove('text-gray-500');
+                } else {
+                    button.classList.remove('text-orange-600');
+                    button.classList.add('text-gray-500');
+                }
+            });
+
+            // Show active content
+            tabContents.forEach(content => {
+                if (content.id === `${tabId}-content`) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        }
+
+        // Add click event to tabs
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                switchTab(tab.dataset.tab);
+            });
         });
 
-        document.getElementById("button1").addEventListener("click", function() {
-            var img2 = document.getElementById("img2");
-            setTimeout(function() {
-                var startX = window.innerWidth;
-                var endX = (window.innerWidth - img2.offsetWidth) / 2;
-                var posY = (window.innerHeight - img2.offsetHeight) / 2;
+        // Add click event to footer buttons
+        footerButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                switchTab(button.dataset.tab);
+            });
+        });
 
-                var step = 5;
-                var delay = 8;
-                var currentX = startX;
+        // Day selector in plan tab
+        const daySelectors = document.querySelectorAll('.day-selector');
+        daySelectors.forEach(day => {
+            day.addEventListener('click', () => {
+                daySelectors.forEach(d => d.classList.remove('active'));
+                day.classList.add('active');
+            });
+        });
 
-                var moveInterval = setInterval(function() {
-                    if (currentX > endX) {
-                        img2.style.left = currentX + "px";
-                        img2.style.top = posY + "px";
-                        currentX -= step;
-                    } else {
-                        clearInterval(moveInterval);
-                    }
-                }, delay);
-                setTimeout(function() {
-                    img2.style.opacity = "1";
-                }, 100);
-            },);
+        // Checkbox functionality
+        const checkboxes = document.querySelectorAll('.checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const label = this.nextElementSibling;
+                if (this.checked) {
+                    label.classList.add('line-through', 'text-gray-400');
+                } else {
+                    label.classList.remove('line-through', 'text-gray-400');
+                }
+            });
         });
     </script>
 </body>
-<style>
-    body {
-        font-family: 'Roboto', sans-serif;
-    }
-    
-    h1{
-        text-align: center;
-    }
-
-    h2{
-        text-align: center;
-    }
-    #img1{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    #img2{
-        display: inline-block;
-        margin-left: auto;
-        margin-right: auto;
-        z-index: 1;
-    }
-
-    .button-container {
-        text-align: center;
-        margin-top: 20px; /* optional: adjust margin as needed */
-    }
-
-    .button-1, .button-2 {
-        margin: 0 10px; /* optional: adjust margin between buttons as needed */
-        z-index: 0;
-    }
-
-    .button-1, .button-2 {
-        background-color: #EA4C89;
-        border-radius: 8px;
-        border-style: none;
-        box-sizing: border-box;
-        color: #FFFFFF;
-        cursor: pointer;
-        display: inline-block;
-        font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 500;
-        height: 40px;
-        line-height: 20px;
-        list-style: none;
-        outline: none;
-        padding: 10px 16px;
-        position: relative;
-        text-align: center;
-        text-decoration: none;
-        transition: color 100ms;
-        vertical-align: baseline;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        transition: left 0.5s ease, top 0.5s ease, opacity 1s ease; /*Thêm transition cho opacity*/
-    }
-
-    .button-1:hover,
-    .button-1:focus {
-        background-color: #F082AC;
-    }
-
-    .button-2 {
-        background-color: red;
-    }
-
-    .button-2:hover,
-    .button-2:focus {
-        background-color: #f34747;
-    }
-
-</style>
 </html>

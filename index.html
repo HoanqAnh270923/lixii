@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luyện tập Sắp xếp Câu hỏi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .quiz-container {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .quiz-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .sortable-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        .sortable-list li {
+            background-color: #ecf0f1;
+            margin-bottom: 8px;
+            padding: 12px 15px;
+            border-radius: 5px;
+            border: 1px solid #bdc3c7;
+            cursor: grab;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.2s;
+            user-select: none;
+        }
+        .sortable-list li:active {
+            cursor: grabbing;
+        }
+        .sortable-list li.dragging {
+            opacity: 0.5;
+            background-color: #c8d6e5;
+        }
+        .sortable-list li.correct {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .sortable-list li.incorrect {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .drag-icon {
+            margin-right: 15px;
+            color: #7f8c8d;
+            font-size: 1.2rem;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            font-weight: bold;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        .btn-check {
+            background-color: #27ae60;
+            color: white;
+        }
+        .btn-reset {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .result-msg {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        /* Style riêng cho các từ in đậm */
+        strong {
+            color: #000;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Luyện Tập Sắp Xếp Trình Tự</h1>
+    <p style="text-align: center; margin-bottom: 30px;">Kéo và thả các mục để sắp xếp chúng theo đúng thứ tự từ 1 đến 7.</p>
+
+    <div id="app"></div>
+
+    <script>
+        // Dữ liệu các bài tập (đã bôi đen các từ theo yêu cầu)[cite: 1]
+        const quizzes = [
+            {
+                id: 'q1',
+                title: '1. Mountain Summits',
+                items: [
+                    "Our <strong>changing</strong> perspectives of mountains",
+                    "A unique <strong>sense</strong> of achievement",
+                    "<strong>Publicising</strong> one’s achievements",
+                    "The <strong>wrong</strong> priority",
+                    "A disturbing <strong>revelation</strong>",
+                    "A <strong>focus</strong> on sustainability",
+                    "A more intimate <strong>relationship</strong>"
+                ]
+            },
+            {
+                id: 'q2',
+                title: '2. The arrival of four-day week',
+                items: [
+                    "A <strong>way of life</strong> now out of date",
+                    "<strong>Benefits</strong> for employees",
+                    "Undesirable <strong>financial</strong> consequences",
+                    "Unforeseen <strong>challenges</strong> for employees",
+                    "Difficult to give up <strong>old</strong> habits",
+                    "An unfair plan for some <strong>people</strong>",
+                    "Alternative <strong>solutions</strong> worth considering"
+                ]
+            },
+            {
+                id: 'q3',
+                title: '3. Woman Mathematics',
+                items: [
+                    "Gender <strong>obscure</strong> achievements",
+                    "Acknowledging achievement of a <strong>pioneer</strong>",
+                    "Man unfairly <strong>credited</strong>",
+                    "A <strong>long</strong> career showing exceptional ability",
+                    "Labels can change perspective on <strong>people</strong>",
+                    "Attempting to create a gender <strong>balance</strong>",
+                    "<strong>Uniformity</strong> is not always beneficial"
+                ]
+            },
+            {
+                id: 'q4',
+                title: '4. Biography of Charles Dickens',
+                items: [
+                    "Charles Dickens for our <strong>times</strong>",
+                    "Difficulties of <strong>modern</strong> readers",
+                    "<strong>Keeping</strong> readers guessing",
+                    "Influence of the <strong>media</strong>",
+                    "Dickens' <strong>early</strong> success",
+                    "<strong>Trying</strong> to protect his property",
+                    "Bringing the book to <strong>life</strong>"
+                ]
+            }
+        ];
+
+        function shuffleArray(array) {
+            let shuffled = array.map((item, index) => ({ text: item, originalIndex: index }));
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        const app = document.getElementById('app');
+
+        quizzes.forEach((quiz, quizIndex) => {
+            const container = document.createElement('div');
+            container.className = 'quiz-container';
+            container.id = `container-${quiz.id}`;
+
+            const title = document.createElement('div');
+            title.className = 'quiz-title';
+            title.textContent = quiz.title;
+            container.appendChild(title);
+
+            const ul = document.createElement('ul');
+            ul.className = 'sortable-list';
+            ul.id = `list-${quiz.id}`;
+            container.appendChild(ul);
+
+            const btnGroup = document.createElement('div');
+            btnGroup.className = 'button-group';
+
+            const checkBtn = document.createElement('button');
+            checkBtn.className = 'btn-check';
+            checkBtn.textContent = 'Kiểm tra';
+            checkBtn.onclick = () => checkOrder(quiz.id);
+
+            const resetBtn = document.createElement('button');
+            resetBtn.className = 'btn-reset';
+            resetBtn.textContent = 'Làm lại (Tráo đổi)';
+            resetBtn.onclick = () => renderList(quiz.id, quiz.items);
+
+            const msgDiv = document.createElement('div');
+            msgDiv.id = `msg-${quiz.id}`;
+            msgDiv.className = 'result-msg';
+
+            btnGroup.appendChild(checkBtn);
+            btnGroup.appendChild(resetBtn);
+            
+            container.appendChild(btnGroup);
+            container.appendChild(msgDiv);
+            app.appendChild(container);
+
+            renderList(quiz.id, quiz.items);
+        });
+
+        function renderList(quizId, items) {
+            const ul = document.getElementById(`list-${quizId}`);
+            const msgDiv = document.getElementById(`msg-${quizId}`);
+            ul.innerHTML = '';
+            msgDiv.textContent = '';
+            msgDiv.style.color = 'black';
+
+            const shuffledItems = shuffleArray(items);
+
+            shuffledItems.forEach(item => {
+                const li = document.createElement('li');
+                li.setAttribute('draggable', 'true');
+                li.setAttribute('data-correct-index', item.originalIndex);
+                li.innerHTML = `<span class="drag-icon">☰</span> ${item.text}`;
+                ul.appendChild(li);
+
+                li.addEventListener('dragstart', () => li.classList.add('dragging'));
+                li.addEventListener('dragend', () => li.classList.remove('dragging'));
+            });
+
+            ul.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                const afterElement = getDragAfterElement(ul, e.clientY);
+                const draggable = document.querySelector('.dragging');
+                if (afterElement == null) {
+                    ul.appendChild(draggable);
+                } else {
+                    ul.insertBefore(draggable, afterElement);
+                }
+            });
+        }
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('li:not(.dragging)')];
+
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        function checkOrder(quizId) {
+            const ul = document.getElementById(`list-${quizId}`);
+            const items = ul.querySelectorAll('li');
+            const msgDiv = document.getElementById(`msg-${quizId}`);
+            let allCorrect = true;
+
+            items.forEach((li, index) => {
+                li.classList.remove('correct', 'incorrect');
+                
+                const correctIndex = parseInt(li.getAttribute('data-correct-index'));
+                if (correctIndex === index) {
+                    li.classList.add('correct');
+                } else {
+                    li.classList.add('incorrect');
+                    allCorrect = false;
+                }
+            });
+
+            if (allCorrect) {
+                msgDiv.textContent = "✅ Chúc mừng! Bạn đã sắp xếp chính xác toàn bộ.";
+                msgDiv.style.color = "#27ae60";
+            } else {
+                msgDiv.textContent = "❌ Có một số câu chưa đúng vị trí (màu đỏ). Hãy kéo thả để sửa lại!";
+                msgDiv.style.color = "#e74c3c";
+            }
+        }
+    </script>
+</body>
+</html>
